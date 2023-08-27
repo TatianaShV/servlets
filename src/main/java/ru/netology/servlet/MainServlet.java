@@ -16,16 +16,16 @@ public class MainServlet extends HttpServlet {
 
   @Override
   public void init() {
-    AnnotationConfigApplicationContext configApplicationContext = new AnnotationConfigApplicationContext
-            ("ru.netology.servlet");
-    final var repository = configApplicationContext.getBean(PostRepository.class);
-    final var service = configApplicationContext.getBean(PostService.class);
-    controller = configApplicationContext.getBean(PostController.class);
+    final var context = new AnnotationConfigApplicationContext
+            ("ru.netology");
+    final var repository = context.getBean(PostRepository.class);
+    final var service = context.getBean(PostService.class);
+    controller = context.getBean(PostController.class);
   }
 
   @Override
   protected void service(HttpServletRequest req, HttpServletResponse resp) {
-    // если деплоились в root context, то достаточно этого
+
     try {
       final var path = req.getRequestURI();
       final var method = req.getMethod();

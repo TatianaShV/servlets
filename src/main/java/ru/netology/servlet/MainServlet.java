@@ -1,6 +1,9 @@
 package ru.netology.servlet;
 
+
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import ru.netology.controller.PostController;
 import ru.netology.repository.PostRepository;
 import ru.netology.service.PostService;
@@ -9,20 +12,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 public class MainServlet extends HttpServlet {
-  private PostController controller;
+
   public static final String API_POSTS_D = "/api/posts/\\d+";
   public static final String POSTS = "/api/posts";
 
-  @Override
-  public void init() {
-    AnnotationConfigApplicationContext configApplicationContext = new AnnotationConfigApplicationContext
-            ("ru.netology.servlet");
-    final var repository = configApplicationContext.getBean(PostRepository.class);
-    final var service = configApplicationContext.getBean(PostService.class);
-    controller = configApplicationContext.getBean(PostController.class);
-  }
-
+ final AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(JavaConfig.class);
+ final PostController controller = context.getBean(PostController.class);
+ final PostService service = context.getBean(PostService.class);
+ final  PostRepository repository = context.getBean(PostRepository.class);
   @Override
   protected void service(HttpServletRequest req, HttpServletResponse resp) {
     // если деплоились в root context, то достаточно этого

@@ -12,11 +12,11 @@ import java.io.Reader;
 import java.util.List;
 
 
-@Controller
+
 public class PostController {
     public static final String APPLICATION_JSON = "application/json";
     private final PostService service;
-@Autowired
+
     public PostController(PostService service) {
         this.service = service;
     }

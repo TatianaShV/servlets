@@ -11,7 +11,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicLong;
 
 // Stub
-@Repository
+
 public class PostRepository {
     private final List<Post> postList = new CopyOnWriteArrayList<>();
     private final AtomicLong postId = new AtomicLong(0);
